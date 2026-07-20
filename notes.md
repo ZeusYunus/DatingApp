@@ -44,3 +44,4 @@
 
 ### Git commands
 1. dotnet new gitignore
+2. git log
