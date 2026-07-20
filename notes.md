@@ -30,12 +30,12 @@
 3. dotnet ef | Entity Framework Core .NET Command-line Tools
 
 ### Packages
-microsoft.entityframeworkcore
-microsoft.entityframeworkcore.Design
-microsoft.entityframeworkcore.Sqlite
+1. microsoft.entityframeworkcore
+2. microsoft.entityframeworkcore.Design
+3. microsoft.entityframeworkcore.Sqlite
 
 ### Dotnet Tools install
-dotnet tool install -g dotnet-ef
+1. dotnet tool install -g dotnet-ef
 
 ### Dotnet Migrations
 1. dotnet ef migrations -h | Check options
