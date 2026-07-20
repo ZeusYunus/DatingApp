@@ -2,7 +2,7 @@
 1. CTRL+SHIFT+P | .NET: New File to create a new file for the dotnet project
 2. CTRL+SHIFT+P | SQLite: Open database
 
-## Dotnet CLI commands
+## Dotnet CLI commands ------------------------------------------------------------------------------
 
 ### Commands to create a dotnet project
 1. dotnet --info
@@ -45,3 +45,21 @@
 ### Git commands
 1. dotnet new gitignore
 2. git log
+
+## Angular CLI commands ------------------------------------------------------------------------------
+
+### Commands to create a angular project
+1. npm install -g @angular/cli
+2. ng new client
+
+### Run angular project
+1. ng serve
+
+### Packages
+1. npm i -D daisyui@latest
+
+### Self-signed certificate is mkcert github
+1. choco install mkcert
+2. mkcert -install
+3. ssl folder creation
+4. mkcert localhost
