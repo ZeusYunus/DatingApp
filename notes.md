@@ -39,8 +39,9 @@
 
 ### Dotnet Migrations
 1. dotnet ef migrations -h | Check options
-2. dotnet ef migrations add InitialCreate -o Data/Migrations | Creates a migration to sqlite
-3. dotnet ef database update | cli
+2. dotnet ef migrations add InitialCreate -o Data/Migrations | Creates a new migration to sqlite
+3. dotnet ef database update | Updates database with migrations
+4. dotnet ef migrations add UserEntityUpdated | Updates a migrations to sql
 
 ### Git commands
 1. dotnet new gitignore
