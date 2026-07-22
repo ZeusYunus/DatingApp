@@ -33,6 +33,9 @@
 1. microsoft.entityframeworkcore
 2. microsoft.entityframeworkcore.Design
 3. microsoft.entityframeworkcore.Sqlite
+4. System.IdentityModel.Tokens.Jwt
+5. Microsoft.IdentityModel.Tokens
+6. Microsoft.AspNetCore.Authentication.JwtBearer
 
 ### Dotnet Tools install
 1. dotnet tool install -g dotnet-ef
@@ -40,8 +43,9 @@
 ### Dotnet Migrations
 1. dotnet ef migrations -h | Check options
 2. dotnet ef migrations add InitialCreate -o Data/Migrations | Creates a new migration to sqlite
-3. dotnet ef database update | Updates database with migrations
+3. dotnet ef database update | Updates/creates database with migrations
 4. dotnet ef migrations add UserEntityUpdated | Updates a migrations to sql
+5. dotnet ef database drop | drop the database
 
 ### Git commands
 1. dotnet new gitignore
