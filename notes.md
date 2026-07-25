@@ -53,6 +53,9 @@
 
 ## Angular CLI commands ------------------------------------------------------------------------------
 
+### Help commands
+1. ng g --help
+
 ### Commands to create a angular project
 1. npm install -g @angular/cli
 2. ng new client
