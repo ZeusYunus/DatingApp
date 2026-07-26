@@ -57,9 +57,10 @@
 ### Help commands
 1. ng g --help
 
-### Commands to create a angular project
+### Angular CLI commands
 1. npm install -g @angular/cli
 2. ng new client
+3. ng g environments
 
 ### Run angular project
 1. ng serve
