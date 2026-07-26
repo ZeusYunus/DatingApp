@@ -46,6 +46,7 @@
 3. dotnet ef database update | Updates/creates database with migrations
 4. dotnet ef migrations add UserEntityUpdated | Updates a migrations to sql
 5. dotnet ef database drop | drop the database
+6. dotnet ef migrations has-pending-model-changes | Check if any migrations is pending
 
 ### Git commands
 1. dotnet new gitignore
