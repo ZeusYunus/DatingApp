@@ -36,6 +36,7 @@
 4. System.IdentityModel.Tokens.Jwt
 5. Microsoft.IdentityModel.Tokens
 6. Microsoft.AspNetCore.Authentication.JwtBearer
+7. CloudinaryDotNet
 
 ### Dotnet Tools install
 1. dotnet tool install -g dotnet-ef
