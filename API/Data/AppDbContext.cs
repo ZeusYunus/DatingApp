@@ -4,17 +4,35 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data;
 
-// Users is the table name
+// Creates all the database tables
 
 public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<AppUser> Users { get; set; }
     public DbSet<Member> Members { get; set; }
     public DbSet<Photo> Photos { get; set; }
+    public DbSet<MemberLike> Likes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Below sets the primary key for the table
+        modelBuilder.Entity<MemberLike>()
+            .HasKey(x => new {x.SourceMemberId, x.TargetMemberId});
+
+        // One source member can have many liked members
+        modelBuilder.Entity<MemberLike>()
+            .HasOne(s => s.SourceMember)
+            .WithMany(t => t.LikedMembers)
+            .HasForeignKey(s => s.SourceMemberId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<MemberLike>()
+            .HasOne(s => s.TargetMember)
+            .WithMany(t => t.LikedByMembers)
+            .HasForeignKey(s => s.TargetMemberId)
+            .OnDelete(DeleteBehavior.NoAction);
 
         var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
             v => v.ToUniversalTime(),
