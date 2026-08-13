@@ -18,6 +18,7 @@ public class Member
     public required string Country { get; set; }
 
     // Navigation property
+    // Prevents this property from being included in JSON.
     [JsonIgnore]
     public List<Photo> Photos { get; set; } = [];
 
@@ -26,6 +27,8 @@ public class Member
 
     [JsonIgnore]
     public List<MemberLike> LikedMembers { get; set; } = [];
+    public List<Message> MessagesSent { get; set; } = [];
+    public List<Message> MessagesReceived { get; set; } = [];
     
     [JsonIgnore]
     [ForeignKey(nameof(Id))]
