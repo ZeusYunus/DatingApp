@@ -1,4 +1,6 @@
 using API.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -6,9 +8,8 @@ namespace API.Data;
 
 // Creates all the database tables
 
-public class AppDbContext(DbContextOptions options) : DbContext(options)
+public class AppDbContext(DbContextOptions options) : IdentityDbContext<AppUser>(options)
 {
-    public DbSet<AppUser> Users { get; set; }
     public DbSet<Member> Members { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<MemberLike> Likes { get; set; }
@@ -17,6 +18,32 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Below is seeding data for the roles
+        modelBuilder.Entity<IdentityRole>()
+            .HasData(
+                new IdentityRole
+                {
+                    Id = "member-id",
+                    Name = "Member",
+                    NormalizedName = "MEMBER",
+                    ConcurrencyStamp = "3b844e8c-018b-401b-bce0-bc29fe94cb6a"
+                },
+                new IdentityRole
+                {
+                    Id = "moderator-id",
+                    Name = "Moderator",
+                    NormalizedName = "MODERATOR",
+                    ConcurrencyStamp = "b2da2c1a-9a08-4163-8dd6-3bb9852a533d"
+                },
+                new IdentityRole
+                {
+                    Id = "admin-id",
+                    Name = "Admin",
+                    NormalizedName = "ADMIN",
+                    ConcurrencyStamp = "68bdb2a1-14c3-48ea-b708-bd9d358e2b94"
+                }
+            );
 
         modelBuilder.Entity<Message>()
         .HasOne(x => x.Recipient)
