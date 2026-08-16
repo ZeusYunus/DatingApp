@@ -69,6 +69,7 @@
 
 ### Packages
 1. npm i -D daisyui@latest
+2. npm install @microsoft/signalr
 
 ### Self-signed certificate is mkcert github
 1. choco install mkcert
