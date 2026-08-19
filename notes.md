@@ -38,17 +38,25 @@
 6. Microsoft.AspNetCore.Authentication.JwtBearer
 7. CloudinaryDotNet
 8. Microsoft.AspNetCore.Identity.EntityFrameworkCore
+9. Microsoft.EntityFrameworkCore.SqlServer
+
+## Other
+1. dotnet restore | is used when removing packages
 
 ### Dotnet Tools install
 1. dotnet tool install -g dotnet-ef
 
-### Dotnet Migrations
+### Dotnet Migrations for sqlite
 1. dotnet ef migrations -h | Check options
 2. dotnet ef migrations add InitialCreate -o Data/Migrations | Creates a new migration to sqlite
 3. dotnet ef database update | Updates/creates database with migrations
 4. dotnet ef migrations add UserEntityUpdated | Updates a migrations to sql
 5. dotnet ef database drop | drop the database
 6. dotnet ef migrations has-pending-model-changes | Check if any migrations is pending
+7. Delete migrations folder
+
+### Dotnet Migrations for prod
+1. dotnet ef migrations add InitialCreate -o Data/Migrations
 
 ### Git commands
 1. dotnet new gitignore
@@ -76,3 +84,8 @@
 2. mkcert -install
 3. ssl folder creation
 4. mkcert localhost
+
+## Publishing
+1. Update client and backend
+2. docker compose up -d
+3. docker compose down

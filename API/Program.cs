@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 builder.Services.AddCors();
@@ -82,9 +82,16 @@ app.UseCors(x => x
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Below creates the wwwroot folder to serve static files
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.MapControllers();
 app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/messages");
+
+// Below makes the dotnet application use angular routing
+app.MapFallbackToController("Index", "Fallback");
 
 // Create/Migration db and seed context on startup
 using var scope = app.Services.CreateScope();
