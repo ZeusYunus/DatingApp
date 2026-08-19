@@ -88,7 +88,7 @@
 
 ## Publishing
 1. ng build
-2. dotnet publish -c Release -o ./bin/Publish
+2. dotnet publish -c Release -o ./bin/Publish ---OR--- dotnet publish -c Release -o C:\demoiis
 3. Update client and backend
 4. docker compose up -d
 5. docker compose down
