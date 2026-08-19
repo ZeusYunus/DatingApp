@@ -57,6 +57,7 @@
 
 ### Dotnet Migrations for prod
 1. dotnet ef migrations add InitialCreate -o Data/Migrations
+2. dotnet publish -c Release -o ./bin/Publish
 
 ### Git commands
 1. dotnet new gitignore
@@ -86,6 +87,8 @@
 4. mkcert localhost
 
 ## Publishing
-1. Update client and backend
-2. docker compose up -d
-3. docker compose down
+1. ng build
+2. dotnet publish -c Release -o ./bin/Publish
+3. Update client and backend
+4. docker compose up -d
+5. docker compose down
