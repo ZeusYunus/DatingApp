@@ -16,6 +16,7 @@ export interface Photo {
   url: string
   publicId?: any
   memberId: string
+  isApproved: boolean
 }
 
 export interface EditableMember {
