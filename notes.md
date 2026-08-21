@@ -39,6 +39,8 @@
 7. CloudinaryDotNet
 8. Microsoft.AspNetCore.Identity.EntityFrameworkCore
 9. Microsoft.EntityFrameworkCore.SqlServer
+10. dotnet add package Microsoft.AspNetCore.OpenApi
+11. dotnet add package Swashbuckle.AspNetCore
 
 ## Other
 1. dotnet restore | is used when removing packages
