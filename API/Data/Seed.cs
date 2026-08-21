@@ -1,3 +1,6 @@
+using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using API.DTOs;
 using API.Entities;
@@ -20,9 +23,9 @@ public class Seed
             Console.WriteLine("No members in seed data");
             return;
         }
-        
+
         foreach (var member in members)
-        {   
+        {
             var user = new AppUser
             {
                 Id = member.Id,
@@ -48,12 +51,12 @@ public class Seed
             user.Member.Photos.Add(new Photo
             {
                 Url = member.ImageUrl!,
-                MemberId = member.Id
+                MemberId = member.Id,
+                IsApproved = true
             });
 
             // Saves the seed users
             var result = await userManager.CreateAsync(user, "Pa$$w0rd");
-
             if (!result.Succeeded)
             {
                 Console.WriteLine(result.Errors.First().Description);

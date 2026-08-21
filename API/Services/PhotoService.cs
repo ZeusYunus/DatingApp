@@ -3,7 +3,6 @@ using API.Helpers;
 using API.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 
 namespace API.Services;
@@ -14,15 +13,17 @@ public class PhotoService : IPhotoService
     public PhotoService(IOptions<CloudinarySettings> config)
     {
         var account = new Account(
-            config.Value.CloudName, 
-            config.Value.ApiKey, 
+            config.Value.CloudName,
+            config.Value.ApiKey,
             config.Value.ApiSecret);
 
         _cloudinary = new Cloudinary(account);
     }
+
     public async Task<DeletionResult> DeletePhotoAsync(string publicId)
     {
         var deleteParams = new DeletionParams(publicId);
+
         return await _cloudinary.DestroyAsync(deleteParams);
     }
 
@@ -37,9 +38,8 @@ public class PhotoService : IPhotoService
             {
                 File = new FileDescription(file.FileName, stream),
                 Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face"),
-                Folder = "da-angdotnet"
+                Folder = "da-ang20"
             };
-
             uploadResult = await _cloudinary.UploadAsync(uploadParams);
         }
 

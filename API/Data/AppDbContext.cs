@@ -1,3 +1,4 @@
+using System;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -22,6 +23,8 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<AppUser>
         base.OnModelCreating(modelBuilder);
 
         // Below is seeding data for the roles
+        modelBuilder.Entity<Photo>().HasQueryFilter(x => x.IsApproved);
+
         modelBuilder.Entity<IdentityRole>()
             .HasData(
                 new IdentityRole
@@ -29,39 +32,37 @@ public class AppDbContext(DbContextOptions options) : IdentityDbContext<AppUser>
                     Id = "member-id",
                     Name = "Member",
                     NormalizedName = "MEMBER",
-                    ConcurrencyStamp = "3b844e8c-018b-401b-bce0-bc29fe94cb6a"
+                    ConcurrencyStamp = "member-concurrency-stamp"
                 },
                 new IdentityRole
                 {
                     Id = "moderator-id",
                     Name = "Moderator",
                     NormalizedName = "MODERATOR",
-                    ConcurrencyStamp = "b2da2c1a-9a08-4163-8dd6-3bb9852a533d"
+                    ConcurrencyStamp = "moderator-concurrency-stamp"
                 },
                 new IdentityRole
                 {
                     Id = "admin-id",
                     Name = "Admin",
                     NormalizedName = "ADMIN",
-                    ConcurrencyStamp = "68bdb2a1-14c3-48ea-b708-bd9d358e2b94"
+                    ConcurrencyStamp = "admin-concurrency-stamp"
                 }
             );
 
         modelBuilder.Entity<Message>()
-        .HasOne(x => x.Recipient)
-        .WithMany(x => x.MessagesReceived)
-        .HasForeignKey(x => x.RecipientId)
-        .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(x => x.Recipient)
+            .WithMany(m => m.MessagesReceived)
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Message>()
             .HasOne(x => x.Sender)
-            .WithMany(x => x.MessagesSent)
-            .HasForeignKey(x => x.SenderId)
+            .WithMany(m => m.MessagesSent)
             .OnDelete(DeleteBehavior.Restrict);
 
         // Below sets the primary key for the table
         modelBuilder.Entity<MemberLike>()
-            .HasKey(x => new {x.SourceMemberId, x.TargetMemberId});
+            .HasKey(x => new { x.SourceMemberId, x.TargetMemberId });
 
         // One source member can have many liked members
         modelBuilder.Entity<MemberLike>()
